@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="./assets/js/static.js"></script>
+    <title>Firebase Authentication</title>
+</head>
+
+<body>
+    <button id="signup-btn" class="hidden">Sign up with Email</button>
+    <button id="signin-btn" class="hidden" style="display: none;">Sign in with Email</button>
+
+    <!-- Section to display user info -->
+
+    <div class="flex flex-direction-column align-items">
+        <div class="flex m-50 center width-available">
+            <h4>Account</h4>
+        </div>
+
+        <div class="center">
+            <button class="flex align-items google-signin-btn" id="google-signin-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="m-5" x="0px" y="0px" width="15" height="15"
+                    viewBox="0 0 48 48">
+                    <path fill="#FFC107"
+                        d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                    </path>
+                    <path fill="#FF3D00"
+                        d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                    </path>
+                    <path fill="#4CAF50"
+                        d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                    </path>
+                    <path fill="#1976D2"
+                        d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                    </path>
+                </svg>
+                Sign in with Google</button>
+            <button id="signout-btn" style="display: none;">Sign Out</button>
+        </div>
+
+        <div class="user-info flex flex-direction-column align-items" id="user-info" style="display: none;">
+            <!-- <img id="user-photo" src="" alt="User Photo"> -->
+            <img id="user-photo" alt="User Photo" style="width: 100px; height: 100px; border-radius: 50%;">
+            <div>
+                <h4 id="user-name">name</h4>
+                <p id="user-email">email</p>
+            </div>
+        </div>
+        <div class="center mt-50">
+            <a href="#" class="footer-link" id="report-bug-btn">
+                <ion-icon class="black-font" name="bug"></ion-icon>
+                <span class="footer-link-text">Report a problem or a bug</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDss53pHibCpqo87_1bhoUHkf8Idnj-Fig",
+            authDomain: "matager-f1f00.firebaseapp.com",
+            projectId: "matager-f1f00",
+            storageBucket: "matager-f1f00.appspot.com",
+            messagingSenderId: "922824110897",
+            appId: "1:922824110897:web:b7978665d22e2d652e7610",
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Google Provider
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        provider.setCustomParameters({
+            login_hint: 'user@example.com'
+        });
+
+        // Sign in with Google (popup method)
+        document.getElementById('google-signin-btn').addEventListener('click', () => {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('User signed in:', user);
+                    Swal.fire('Logged in!', 'You are now signed in.', 'success');
+                    updateUI(user);  // Show signout button if user is logged in
+                })
+                .catch((error) => {
+                    console.error('Error during sign-in:', error);
+                    Swal.fire('Error', error.message, 'error');
+                });
+        });
+
+        // Sign out
+        document.getElementById('signout-btn').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                console.log('User signed out');
+                Swal.fire('Logged out!', 'You have been signed out.', 'success');
+                updateUI(null);  // Hide signout button and user info
+            });
+        });
+
+        // Sign up with email/password
+        document.getElementById('signup-btn').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Sign up',
+                html:
+                    '<input id="email" class="swal2-input" placeholder="Email">' +
+                    '<input id="password" class="swal2-input" placeholder="Password" type="password">',
+                confirmButtonText: 'Sign Up',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    if (!email || !password) {
+                        Swal.showValidationMessage('Please enter email and password');
+                        return;
+                    }
+                    return { email: email, password: password };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { email, password } = result.value;
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .then((userCredential) => {
+                            Swal.fire('Account created!', 'You are now signed up.', 'success');
+                            updateUI(userCredential.user);
+                        })
+                        .catch((error) => {
+                            console.error('Error during sign-up:', error);
+                            Swal.fire('Error', error.message, 'error');
+                        });
+                }
+            });
+        });
+
+        // Sign in with email/password
+        document.getElementById('signin-btn').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Sign in',
+                html:
+                    '<input id="email-signin" class="swal2-input" placeholder="Email">' +
+                    '<input id="password-signin" class="swal2-input" placeholder="Password" type="password">',
+                confirmButtonText: 'Sign In',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const email = document.getElementById('email-signin').value;
+                    const password = document.getElementById('password-signin').value;
+                    if (!email || !password) {
+                        Swal.showValidationMessage('Please enter email and password');
+                        return;
+                    }
+                    return { email: email, password: password };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { email, password } = result.value;
+                    auth.signInWithEmailAndPassword(email, password)
+                        .then((userCredential) => {
+                            Swal.fire('Logged in!', 'You are now signed in.', 'success');
+                            updateUI(userCredential.user);
+                        })
+                        .catch((error) => {
+                            console.error('Error during sign-in:', error);
+                            Swal.fire('Error', error.message, 'error');
+                        });
+                }
+            });
+        });
+
+        // Listen to authentication state changes
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                console.log('User is signed in:', user);
+                updateUI(user);  // Update UI with user data
+            } else {
+                console.log('No user is signed in.');
+                updateUI(null);  // Hide user info
+            }
+        });
+
+        // Helper function to update UI based on auth state
+        function updateUI(user) {
+            if (user) {
+                // Show user info
+                document.getElementById('google-signin-btn').style.display = 'none';
+                document.getElementById('signup-btn').style.display = 'none';
+                document.getElementById('signin-btn').style.display = 'none';
+                document.getElementById('signout-btn').style.display = 'block';
+
+                // Update user info (name, email, photo)
+                document.getElementById('user-info').style.display = 'block';
+                document.getElementById('user-name').innerText = `Name: ${user.displayName || 'No Name'}`;
+                document.getElementById('user-email').innerText = `Email: ${user.email}`;
+                document.getElementById('user-photo').src = user.photoURL || 'https://via.placeholder.com/100';
+            } else {
+                // Hide user info
+                document.getElementById('google-signin-btn').style.display = 'block';
+                document.getElementById('signup-btn').style.display = 'block';
+                document.getElementById('signin-btn').style.display = 'block';
+                document.getElementById('signout-btn').style.display = 'none';
+                document.getElementById('user-info').style.display = 'none';
+            }
+        }
+    </script>
+    <script src="./assets/js/route.js"></script>
+    <script src="./assets/js/report.js"></script>
+   
+</body>
+
+</html>
