@@ -46,7 +46,7 @@
             <div class="container pricing-container">
                 <h2 class="text-center mt-5 text-animate">Stores</h2>
 
-                <div class="row mb-4 text-animate mt-5" id="stores">
+                <div class="row mb-4 flex center text-animate mt-5" id="stores">
 
 
 
@@ -89,13 +89,12 @@
 
                                 // Create a new store card
                                 const storeCard = document.createElement("div");
-                                storeCard.className = "col-md-3 animate-on-scroll show";
+                                storeCard.className = "w-400 mb-6 animate-on-scroll show";
                                 storeCard.innerHTML = `
-              <div class="w-100 h-100 p-5 services-card-shadow rounded-4 flex flex-column align-items-center">
+              <div class="w-100 bg-e5d7ff63 h-100 p-5 services-card-shadow rounded-4 flex flex-column align-items-center">
                 <h4 class="mt-3 lh-base">${storeName}</h4>
                 <p class="mb-0">${storeDetails}</p>
                 <a href="https://${storeDomain}" target="_blank" class="btn btn-sm btn-primary mt-3">Visit Store</a>
-                    <a href="./stores/peacock/index.html" class="btn btn-sm btn-primary mt-3">redierct</a>
               </div>
             `;
 

@@ -9590,6 +9590,7 @@ fieldset:disabled .btn {
 .mr-2 {
   margin-right: 2px !important;
 }
+
 .mr-5 {
   margin-right: 5px !important;
 }
@@ -23225,7 +23226,8 @@ iframe.yt-video.loaded {
 .flex {
   display: flex !important;
 }
-.hidden{
+
+.hidden {
   display: none !important;
 }
 
@@ -23254,6 +23256,7 @@ iframe.yt-video.loaded {
   opacity: 1;
   transform: translateY(0);
 }
+
 .preloader {
   top: 0;
   left: 0;
@@ -23266,8 +23269,15 @@ iframe.yt-video.loaded {
   align-items: center;
   z-index: 9999;
 }
-.swal2-confirm{
-background: #6f42c1;
+
+.swal2-confirm {
+  background: #6f42c1;
 }
 
 /* // */
+.w-400 {
+  width: 400px !important;
+}
+.bg-e5d7ff63{
+  background:#e5d7ff63;
+}
