@@ -1526,7 +1526,11 @@ a.footer-link:is(:hover, :focus) {
     align-items: center;
   }
 
-  .product-image {
+  .details-info {
+    width: -webkit-fill-available !important;
+  }
+
+  /* .product-image {
     display: none;
     width: 90% !important;
   }
@@ -1539,6 +1543,22 @@ a.footer-link:is(:hover, :focus) {
 
   .product-image.active {
     display: block;
+  } */
+  .content-photo-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .product-image {
+    display: none;
+    width: 100% !important;
+    /* Image takes up most of the width */
+  }
+
+  .product-image.active {
+    display: block;
+    /* Show only active images */
   }
 
   .previous-button {
@@ -1779,6 +1799,9 @@ a.footer-link:is(:hover, :focus) {
 
 .ml-5 {
   margin-left: 5px;
+}
+.mb-5 {
+  margin-bottom: 5px;
 }
 
 .mb-10 {
@@ -2229,6 +2252,9 @@ select {
 
 .line-height-15 {
   line-height: 15px;
+}
+.line-height-30 {
+  line-height: 30px;
 }
 
 .textarea-address {
@@ -3313,7 +3339,7 @@ a {
 }
 
 .details-info {
-  width: -webkit-fill-available !important;
+  width: 40%;
 }
 
 /* // */
@@ -3423,4 +3449,43 @@ a {
   margin-top: 10px;
   border-radius: 5px !important;
   font-size: small;
+}
+
+/* General layout for larger screens */
+.content-photo-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 images per row */
+  gap: 5px;
+  /* Adjust the space between images */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.product-image {
+  width: 100%;
+  /* Larger than 30% */
+  height: auto;
+  object-fit: cover;
+  /* Ensures images are well-fitted */
+}
+
+/* Navigation buttons positioning */
+.previous-button,
+.next-button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.previous-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
 }

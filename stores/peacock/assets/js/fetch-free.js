@@ -103,7 +103,7 @@ function fetchAndRenderProducts() {
           productCard.innerHTML = `
             <div class="product-card" tabindex="0">
               <figure class="card-banner">
-                <img src="${product["product-photo"]}" width="312" height="350" alt="${product["product-title"]}"class="image-contain" id="swipe1">
+                <img src="${product["product-photo"]}" width="312" height="350" alt=""class="image-contain" id="swipe1">
                 <img src="${product["product-photo2"]}" width="312" height="350" alt="" id="swipe2" class="image-contain" style="display: none;">
                 <div class="card-badge">New</div>
                 <ul class="card-action-list">
@@ -197,6 +197,7 @@ function fetchAndRenderProducts() {
           }
 
           const salePrice = calculateSalePrice(originalPrice, saleAmount);
+          setDefaultImageSource(product);
 
           // Construct product card HTML (your existing logic)
           productCard.innerHTML = `
@@ -204,9 +205,7 @@ function fetchAndRenderProducts() {
               <figure class="card-banner">
                 <img src="${
                   product["product-photo"]
-                }" width="312" height="350" alt="${
-            product["product-title"]
-          }" class="image-contain" id="swipe1">
+                }" width="312" height="350" alt="" class="image-contain" id="swipe1">
                 <img src="${
                   product["product-photo2"]
                 }" width="312" height="350" id="swipe2" class="image-contain" style="display: none;">
@@ -242,7 +241,7 @@ function fetchAndRenderProducts() {
           `;
 
           productOverview.appendChild(productCard);
-
+          setDefaultImageSource(product);
           // Set up hover effect for the product card in the product overview
           setupHoverEffect(productCard);
         });
@@ -323,7 +322,7 @@ function renderSaleItems(products, saleContainer) {
       productCard.innerHTML = `
         <div class="product-card" tabindex="0">
           <figure class="card-banner">
-            <img src="${product["product-photo"]}" width="312" height="350" alt="${product["product-title"]}" class="image-contain" id="swipe1">
+            <img src="${product["product-photo"]}" width="312" height="350" alt="" class="image-contain" id="swipe1">
             <img src="${product["product-photo2"]}" width="312" height="350" id="swipe2" class="image-contain" style="display: none;">
             <div class="card-badge"> -${saleAmount}%</div>
             <ul class="card-action-list">
@@ -351,7 +350,7 @@ function renderSaleItems(products, saleContainer) {
           </div>
         </div>
       `;
-
+      setDefaultImageSource(product);
       saleItem.appendChild(productCard);
       saleContainer.appendChild(saleItem);
 

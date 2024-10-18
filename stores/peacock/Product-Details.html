@@ -11,7 +11,7 @@
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peacock</title>
+    <title id="store-title"></title>
     <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,7 @@
     <script src="./assets/js/static.js"></script>
     <script src="./assets/js/search-product.js"></script>
     <script src="./assets/js/image-error.js"></script>
+
 </head>
 
 
@@ -34,7 +35,7 @@
         <div class="overlay" data-overlay=""></div>
 
         <a href="./index.html" class="logo">
-            <img src="./assets/images/iicon.svg" width="160" height="50" alt="RitzyStock">
+            <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
         </a>
 
         <button class="nav-open-btn" data-nav-open-btn="" aria-label="Open Menu">
@@ -48,7 +49,7 @@
             </button>
 
             <a href="#" class="logo bg-white">
-                <img src="./assets/images/iicon.svg" width="190" height="50" alt="Footcap logo">
+                <img src="./assets/images/iicon.svg" width="190" height="50" alt="">
             </a>
 
             <ul class="navbar-list">
@@ -169,18 +170,45 @@
             <div class="flex center" id="productDetailsSection">
                 <div class="flex center width-90">
                     <div class="flex">
-                        <div id="product-div" class="flex center align-items">
+                        <div id="product-div" class="flex center">
 
-                            <div class="content-photo-container">
+                            <!-- <div class="content-photo-container">
                                 <button id="previous-button" class="previous-button none-op"><i
                                         class="bi bi-arrow-left-short arrow"></i></button>
-                                <img id="productImage" class="m-5 product-image active"
-                                    style="height: min-content;width: 30%;" src="" alt="Product Image">
-                                <img id="productImage2" class="m-5 product-image"
-                                    style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage" class="m-5 product-image active"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage2" class="m-5 product-image"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage3" class="m-5 product-image active"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage4" class="m-5 product-image"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage5" class="m-5 product-image active"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                    <img id="productImage6" class="m-5 product-image"
+                                        style="height: min-content;width: 30%;" src="" alt="Product Image">
+                                
                                 <button id="next-button" class="next-button none-op"><i
                                         class="bi bi-arrow-right-short arrow"></i></button>
+                            </div> -->
+                            <div class="content-photo-container">
+                                <button id="previous-button" class="previous-button none-op">
+                                    <i class="bi bi-arrow-left-short arrow"></i>
+                                </button>
+
+                                <img id="productImage" class="product-image active" src="" alt="Product Image">
+                                <img id="productImage2" class="product-image" src="" alt="Product Image">
+                                <img id="productImage3" class="product-image" src="" alt="Product Image">
+                                <img id="productImage4" class="product-image" src="" alt="Product Image">
+                                <img id="productImage5" class="product-image" src="" alt="Product Image">
+                                <img id="productImage6" class="product-image" src="" alt="Product Image">
+
+                                <button id="next-button" class="next-button none-op">
+                                    <i class="bi bi-arrow-right-short arrow"></i>
+                                </button>
                             </div>
+                            
+
                             <script>
                                 const images = document.querySelectorAll('.product-image');
                                 let currentIndex = 0;
@@ -231,13 +259,35 @@
                                     </h5>
                                 </div>
 
-                                <div class="m-5">
+                                <div class="m-5 mb-10">
                                     <button id="addToCartButton" class="Add-to-Cart">Add
                                         to Cart
                                         <i class="bi"></i>
                                     </button>
 
                                 </div>
+                                <div class="m-5 mb-10">
+                                    <button id="showdetails" class="Add-to-Cart">Show Details
+                                        <i class="bi bi-info"></i>
+                                    </button>
+                                </div>
+                                <div id="details-section" class="m-5 mb-10 hidden">
+                                    <div class="flex align-items mb-5">
+                                        <h5 class="m-5 flex">Category :</h5>
+                                        <p class="" id="category"></p>
+                                    </div>
+                                    <div class="flex align-items mb-5">
+                                        <h5 class="m-5 flex">piece :</h5>
+                                        <p class="" id="piece"></p>
+                                    </div>
+                                    <div class="mb-5">
+                                        <h5 class="m-5 flex mt-10">Details:</h5>
+                                        <p class="m-5 line-height-30" id="product-details"></p>
+                                    </div>
+
+                                </div>
+                                
+
                                 <!--cart validation-->
                                 <script>
                                     // Function to check if elements are empty and toggle button state
@@ -344,22 +394,24 @@
 
                                 <!-- Add other product details here as needed -->
                             </div>
-
-
                         </div>
                     </div>
-
-
-
                 </div>
 
 
             </div>
+            
         </section>
 
 
 
     </div>
+    <div class="flex center">
+        <a href="https://matager.online" target="_blank">
+            <img src="./assets/images/powerd by matager black.svg" width="100px">
+        </a>
+    </div>
+    
 </main>
 
 
@@ -422,21 +474,51 @@
                 const productID = document.getElementById('productID');
                 const productImageElement = document.getElementById('productImage');
                 const productImage2Element = document.getElementById('productImage2');
+                const productImage3Element = document.getElementById('productImage3');
+                const productImage4Element = document.getElementById('productImage4');
+                const productImage5Element = document.getElementById('productImage5');
+                const productImage6Element = document.getElementById('productImage6');
                 const prePriceElement = document.getElementById('preprice'); // New element for original price
                 const productPriceElement = document.getElementById('productPrice'); // New element for product price
                 const BrandNameElement = document.getElementById('BrandName');
                 const hintElement = document.getElementById('hint');
+                const categoryElement = document.getElementById('category');
+                const pieceElement = document.getElementById('piece');
+                const detailsElement = document.getElementById('product-details');
 
                 // Populate product details
                 BrandNameElement.innerText = productDetails["Brand-Name"];
                 productTitleElement.innerText = productDetails["product-title"];
                 productID.innerText = key;
-                productImageElement.src = productDetails["product-photo"];
-                productImage2Element.src = productDetails["product-photo2"];
+                // productImageElement.src = productDetails["product-photo"];
+                // productImage2Element.src = productDetails["product-photo2"];
+                // productImage3Element.src = productDetails["product-photo3"];
+                // productImage4Element.src = productDetails["product-photo4"];
+                // productImage5Element.src = productDetails["product-photo5"];
+                // productImage6Element.src = productDetails["product-photo6"];
+
+                const imageKeys = ["product-photo", "product-photo2", "product-photo3", "product-photo4", "product-photo5", "product-photo6"];
+                const imageElements = [productImageElement, productImage2Element, productImage3Element, productImage4Element, productImage5Element, productImage6Element];
+
+                imageKeys.forEach((key, index) => {
+                    const imageUrl = productDetails[key];
+                    const imageElement = imageElements[index];
+
+                    if (imageUrl) {
+                        imageElement.src = imageUrl;
+                      
+                    } else {
+                        imageElement.style.display = 'none';  // Hide the image if empty
+                    }
+                });
+
 
                 // Calculate and display prices
                 const saleAmount = productDetails["sale-amount"];
                 const originalPrice = productDetails["Product-Price"];
+                categoryElement.innerText = productDetails["category"];
+                pieceElement.innerText = productDetails["piece"];
+                detailsElement.innerText = productDetails["product-description"];
                 let prePriceHTML = '';
                 let productPriceHTML = '';
 
@@ -573,13 +655,33 @@
             })
             .then((data) => {
                 // Check and set default image source if necessary
-                setDefaultImageSource_PD(data, "img1", "img2");
+                setDefaultImageSource_PD(data, "img1", "img2", "img3", "img4", "img5", "img6");
 
                 const productImageElement = document.getElementById('productImage');
                 const productImage2Element = document.getElementById('productImage2');
+                const productImage3Element = document.getElementById('productImage3');
+                const productImage4Element = document.getElementById('productImage4');
+                const productImage5Element = document.getElementById('productImage5');
+                const productImage6Element = document.getElementById('productImage6');
 
-                productImageElement.src = data.img1;
-                productImage2Element.src = data.img2;
+                // productImageElement.src = data.img1;
+                // productImage2Element.src = data.img2;
+                // productImage3Element.src = data.img3;
+                // productImage4Element.src = data.img4;
+                // productImage5Element.src = data.img5;
+                // productImage6Element.src = data.img6;
+                const images = [data.img1, data.img2, data.img3, data.img4, data.img5, data.img6];
+                const imageElements = [productImageElement, productImage2Element, productImage3Element, productImage4Element, productImage5Element, productImage6Element];
+
+                imageElements.forEach((element, index) => {
+                    if (images[index]) {
+                        element.src = images[index];
+                      
+                    } else {
+                        element.style.display = 'none';  // Hide image
+                    }
+                });
+
 
 
             })
@@ -643,6 +745,19 @@
             this.classList.add('active');
         });
     });
+    document.getElementById('showdetails').addEventListener('click', function () {
+        const detailsSection = document.getElementById('details-section');
+        const button = document.getElementById('showdetails');
+
+        if (detailsSection.classList.contains('hidden')) {
+            detailsSection.classList.remove('hidden');
+            button.innerHTML = 'Hide Details <i class="bi bi-info"></i>';
+        } else {
+            detailsSection.classList.add('hidden');
+            button.innerHTML = 'Show Details <i class="bi bi-info"></i>';
+        }
+    });
+
 </script>
 <script src="./assets/js/update-cart-amont.js"></script>
 <script src="./assets/js/route.js"></script>

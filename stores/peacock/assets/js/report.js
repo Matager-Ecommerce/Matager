@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const requestBody = {
       customerName: customerName,
+      email: user.email,
       phoneNumber: phoneNumber,
       problemDescription: problemDescription,
       submittedAt: new Date().toISOString(),
@@ -155,3 +156,5 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+

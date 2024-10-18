@@ -97,3 +97,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+//handle page title
+document.getElementById("store-title").innerHTML = storename;

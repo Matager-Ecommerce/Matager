@@ -11,7 +11,7 @@
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peacock</title>
+    <title id="store-title"></title>
     <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +25,9 @@
     <script src="./assets/js/search-product.js"></script>
     <script src="./assets/jq/jquery.js"></script>
     <script src="./assets/js/image-error.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 
 <div class="preloader" id="preloader">
@@ -39,7 +42,7 @@
             <div class="overlay" data-overlay=""></div>
 
             <a href="./index.html" class="logo">
-                <img src="./assets/images/iicon.svg" width="160" height="50" alt="RitzyStock">
+                <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
             </a>
 
             <button class="nav-open-btn" data-nav-open-btn="" aria-label="Open Menu">
@@ -53,7 +56,7 @@
                 </button>
 
                 <a href="#" class="logo bg-white">
-                    <img src="./assets/images/iicon.svg" width="190" height="50" alt="Footcap logo">
+                    <img src="./assets/images/iicon.svg" width="190" height="50" alt="">
                 </a>
 
                 <ul class="navbar-list">
@@ -239,7 +242,7 @@
             <div class="footer-brand">
 
                 <a href="#" class="logo">
-                    <img src="./assets/images/iicon.svg" width="160" height="50" alt="RitzyStock">
+                    <img src="./assets/images/iicon.svg" width="160" height="50" alt="">
                 </a>
 
                 <ul class="social-list hidden">
@@ -335,13 +338,26 @@
                     </form>
 
                 </div>
+                <ul class="footer-list">
+                    <p class="footer-list-title">Matager</p>
+                    <li>
+                        <a href="https://matager.online/PrivacyPolicy.html" class="footer-link">
+                            <span class="footer-link-text">privacy policy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://matager.online/Termsofservice.html" class="footer-link">
+                            <span class="footer-link-text">Terms of service</span>
+                        </a>
+                    </li>
+                </ul>
 
             </div>
 
         </div>
     </div>
     <div class="flex center">
-        <a href="https://ecommerce-ai-5.github.io/Matager/" target="_blank">
+        <a href="https://matager.online" target="_blank">
             <img src="./assets/images/powerd by matager black.svg" width="100px">
         </a>
     </div>
